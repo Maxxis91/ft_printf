@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:54:42 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/07 19:48:34 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/12 20:02:59 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ t_seq	*ft_seq_new(void)
 	res->flags->bpos = 0;
 	res->flags->sign = 0;
 	res->width = 0;
-	res->prcsn = 0;
+	res->prcsn = -1;
 	res->tconv = 0;
 	res->data = NULL;
 	res->next = NULL;
 	return (res);
 }
 
-void	ft_seq_set(t_seq *seq, char *flg, size_t w, size_t p)
+void	ft_seq_set(t_seq *seq, char *flg, size_t w, long p)
 {
 	if (ft_strchr(flg, 35))
 		seq->flags->x = 49;

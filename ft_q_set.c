@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 01:36:26 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/11 22:24:15 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/14 22:19:09 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_set_conv(t_seq *seq, char *tok)
 	width = ft_atoi(tmp);
 	while (ft_isdigit(*tmp))
 		++tmp;
-	prec = 1;
+	prec = -1;
 	if (*tmp == '.')
 		prec = ft_atoi(++tmp);
 	while (ft_isdigit(*tmp))
@@ -56,11 +56,7 @@ static void	ft_seq_set_tok(t_seq *seq, char *tok)
 	if (*tok != 37)
 		ft_set_str(seq, tok);
 	else
-	{
 		ft_set_conv(seq, tok);
-		if (seq->tconv == 115)
-			seq->prcsn = SIZE_MAX;
-	}
 	return ;
 }
 

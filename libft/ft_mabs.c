@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 21:39:51 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/11 18:48:14 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/13 21:51:51 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ size_t	ft_smax(size_t a, size_t b)
 }
 
 size_t	ft_abs(long a)
-{ 
+{
 	if (a < 0)
 		return ((size_t)(-a));
 	return ((size_t)(a));

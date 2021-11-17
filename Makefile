@@ -5,38 +5,41 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/10/10 20:19:54 by gmelissi          #+#    #+#              #
-#    Updated: 2021/11/17 17:29:52 by gmelissi         ###   ########.fr        #
+#    Created: 2021/11/17 17:30:45 by gmelissi          #+#    #+#              #
+#    Updated: 2021/11/17 18:06:23 by gmelissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-FLAGS = -Wall -Wextra -Werror -include $(HEADS)
-PATH_HEAD = ./
-HEAD = libft.h
-HEADS = $(addprefix $(PATH_HEAD), $(HEAD))
-PATH_SRC = ./
-SRC = ft_atoi.c ft_bzero.c ft_htoa.c ft_isdigit.c ft_itoa.c ft_mabs.c \
-	  ft_memcpy.c ft_memset.c ft_strchr.c ft_strdup.c ft_strlcpy.c \
-	  ft_strlen.c ft_strncpy.c ft_substr.c ft_toupper.c
-SRCS = $(addprefix $(PATH_SRC), $(SRC))
-OBJS = $(SRCS:%.c=%.o)
-NAME = libft.a
+CC =		cc
+FLAGS =		-Wall -Wextra -Werror -include $(HEADS)
+PATH_HEAD =	./
+HEAD =		ftprintf.h
+HEADS =		$(addprefix $(PATH_HEAD), $(HEAD))
+PATH_SRC =	./
+SRC =		ft_parse.c ft_printf.c ft_q_set.c ft_seq.c ft_set_c.c \
+			ft_set_d.c ft_set_p.c ft_set_s.c ft_set_u.c ft_set_x.c
+SRCS =		$(addprefix $(PATH_SRC), $(SRC))
+OBJS =		$(SRCS:%.c=%.o)
+NAME =		libftprintf.a
 
-.PHONY: all clean fclean re
+.PHONY:		all clean fclean re
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-		ar rcs $(NAME) $?
+			make -C ./libft
+			cp ./libft/libft.a $(NAME)
+			ar rcs $(NAME) $?
 
 %.o:		%.c $(HEADS)
-		${CC} ${FLAGS} -c $< -o $@
+			${CC} ${FLAGS} -c $< -o $@
 
 clean: 
-		@rm -f $(OBJS)
+			make clean -C ./libft
+			@rm -f $(OBJS)
 
-fclean: 	clean
-		@rm -f $(NAME)
+fclean:		clean
+			make fclean -C ./libft
+			@rm -f $(NAME)
 
-re: fclean all
+re:			fclean all

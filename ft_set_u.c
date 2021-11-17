@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:33:40 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/11 23:49:53 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/13 21:50:40 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,69 +15,57 @@
 static char	*ft_get_zprec(t_seq *seq, char *s)
 {
 	char	*res;
+	long	len;
 
-	res = (char *)malloc(seq->prcsn + 1);
+	len = ft_smax(seq->prcsn, ft_strlen(s));
+	res = (char *)malloc(len + 1);
 	if (!res)
 		return (NULL);
-	ft_bzero(res, seq->prcsn + 1);
-	(void)ft_memset(res, 48, seq->prcsn);
-	(void)ft_strlcpy(res + seq->prcsn - ft_strlen(s), s, ft_strlen(s) + 1);
+	ft_bzero(res, len + 1);
+	(void)ft_memset(res, 48, len);
+	(void)ft_strlcpy(res + len - ft_strlen(s), s, ft_strlen(s) + 1);
 	free(s);
 	return (res);
 }
 
-static char	*ft_get_pad(t_seq *seq, const char *s)
+static char	*ft_get_pad(t_seq *seq, char *s)
 {
 	char	*res;
 
-	res = (char *)malloc(seq->width - ft_strlen(s) + 1);
+	res = (char *)malloc(seq->width + 1);
 	if (!res)
 		return (NULL);
-	ft_bzero(res, seq->width - ft_strlen(s) + 1);
-	if (seq->flags->zpad && !seq->flags->ladj)
-		(void)ft_memset(res, 48, seq->width - ft_strlen(s));
+	ft_bzero(res, seq->width + 1);
+	if (seq->flags->zpad)
+		(void)ft_memset(res, 48, seq->width);
 	else
-		(void)ft_memset(res, 32, seq->width - ft_strlen(s));
-	return (res);
-}
-
-static void	ft_set_res(t_seq *seq, char **r, char *a, char *b)
-{
+		(void)ft_memset(res, 32, seq->width);
 	if (seq->flags->ladj)
-	{
-		(void)ft_strlcpy(*r, a, sizeof(r));
-		(void)ft_strlcat(*r, b, sizeof(r));
-	}
+		(void)ft_strncpy(res, s, ft_strlen(s));
 	else
-	{
-		(void)ft_strlcpy(*r, b, sizeof(r));
-		(void)ft_strlcat(*r, a, sizeof(r));
-	}
-	free(a);
-	free(b);
-	return ;
+		(void)ft_strncpy(res + seq->width - ft_strlen(s), s, ft_strlen(s) + 1);
+	free(s);
+	return (res);
 }
 
 void	*ft_set_u(t_seq *seq, unsigned int u)
 {
 	char	*tmp;
-	char	*pad;
 	char	*zprec;
 	char	*res;
 
+	if (!seq->prcsn && !u)
+	{
+		seq->width = 0;
+		return (NULL);
+	}
 	tmp = ft_itoa(u);
-	seq->prcsn = ft_smax(seq->prcsn, ft_strlen(tmp));
-	seq->width = ft_smax(seq->width, seq->prcsn);
-	res = (char *)malloc(seq->width + 1);
-	if (!res)
-		return (NULL);
+	if (seq->prcsn >= 0 || seq->flags->ladj)
+		seq->flags->zpad = 0;
+	seq->prcsn = ft_abs(seq->prcsn);
 	zprec = ft_get_zprec(seq, tmp);
-	if (!zprec)
-		return (NULL);
-	pad = ft_get_pad(seq, zprec);
-	if (!pad)
-		return (NULL);
-	ft_set_res(seq, &res, zprec, pad);
+	seq->width = ft_smax(seq->width, ft_strlen(zprec));
+	res = ft_get_pad(seq, zprec);
 	seq->data = res;
 	return (res);
 }
