@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 17:09:01 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/17 17:23:55 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/17 20:40:27 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_atoi(const char *src);
 void	ft_bzero(void *s, size_t n);
 char	*ft_htoa(size_t n);
 int		ft_isdigit(int c);
-char	*ft_itoa(int n);
+char	*ft_itoa(long n);
 size_t	ft_abs(long a);
 long	ft_max(long a, long b);
 long	ft_min(long a, long b);

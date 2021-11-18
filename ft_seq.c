@@ -6,11 +6,11 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:54:42 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/12 20:02:59 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/18 20:45:42 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "ft_printf.h"
 
 t_seq	*ft_seq_new(void)
 {

@@ -6,7 +6,7 @@
 #    By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/10 20:19:54 by gmelissi          #+#    #+#              #
-#    Updated: 2021/11/17 17:29:52 by gmelissi         ###   ########.fr        #
+#    Updated: 2021/11/17 20:41:41 by gmelissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ $(NAME):	$(OBJS)
 
 clean: 
 		@rm -f $(OBJS)
+		@rm -f ./libft.h.gch
 
 fclean: 	clean
 		@rm -f $(NAME)

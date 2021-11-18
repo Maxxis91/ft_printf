@@ -6,33 +6,11 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:33:40 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/14 22:17:16 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/18 21:37:47 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-
-static int	ft_is_zero(t_seq *seq, char *s)
-{
-	if (seq->flags->bpos)
-		seq->flags->sign = 0;
-	if (!seq->prcsn && *s == 48)
-	{
-		seq->width = ft_smax(seq->flags->bpos, seq->flags->sign);
-		if (!seq->width)
-		{
-			free(s);
-			s = NULL;
-		}
-		if (seq->flags->bpos)
-			*s = 32;
-		if (seq->flags->sign)
-			*s = 43;
-		seq->data = s;
-		return (1);
-	}
-	return (0);
-}
+#include "ft_printf.h"
 
 static char	*ft_get_zprec(t_seq *seq, char *s)
 {
@@ -92,9 +70,12 @@ void	*ft_set_d(t_seq *seq, int d)
 	char	*zprec;
 	char	*res;
 
-	tmp = ft_itoa(d);
-	if (ft_is_zero(seq, tmp))
-		return (NULL);
+	if (!seq->prcsn && !d)
+		tmp = ft_strdup("");
+	else
+		tmp = ft_itoa(d);
+	if (seq->flags->bpos)
+		seq->flags->sign = 0;
 	if (seq->prcsn >= 0 || seq->flags->ladj)
 		seq->flags->zpad = 0;
 	seq->prcsn = ft_abs(seq->prcsn);

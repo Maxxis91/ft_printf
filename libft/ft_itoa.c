@@ -6,13 +6,13 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 16:02:10 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/10/21 21:07:06 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/17 20:39:05 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_numlen(int n)
+static size_t	ft_numlen(long n)
 {
 	size_t	res;
 
@@ -27,7 +27,7 @@ static size_t	ft_numlen(int n)
 	return (res);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long n)
 {
 	char	*res;
 	size_t	len;

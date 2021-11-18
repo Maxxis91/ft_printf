@@ -6,11 +6,11 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:33:40 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/13 20:32:33 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/18 20:46:36 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "ft_printf.h"
 
 static char	*ft_get_zprec(t_seq *seq, char *s)
 {
@@ -55,7 +55,7 @@ void	*ft_set_s(t_seq *seq, char *s)
 	char	*res;
 
 	if (!s)
-		tmp = "(null)";
+		tmp = ft_strdup("(null)");
 	else
 		tmp = ft_strdup(s);
 	zprec = ft_get_zprec(seq, tmp);

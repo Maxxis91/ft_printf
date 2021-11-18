@@ -6,11 +6,11 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 01:36:26 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/14 22:19:09 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/18 23:14:55 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "ft_printf.h"
 
 static void	ft_set_str(t_seq *seq, char *tok)
 {
@@ -26,6 +26,7 @@ static void	ft_set_str(t_seq *seq, char *tok)
 static void	ft_set_conv(t_seq *seq, char *tok)
 {
 	char	*tmp;
+	char	*flg;
 	size_t	prec;
 	size_t	width;
 
@@ -33,6 +34,8 @@ static void	ft_set_conv(t_seq *seq, char *tok)
 	while (ft_strchr("#0- +", *tmp))
 		++tmp;
 	width = ft_atoi(tmp);
+	flg = ft_substr(tok + 1, 0, tmp - tok - 1);
+	ft_seq_set(seq, flg, 0, -1);
 	while (ft_isdigit(*tmp))
 		++tmp;
 	prec = -1;
@@ -40,13 +43,11 @@ static void	ft_set_conv(t_seq *seq, char *tok)
 		prec = ft_atoi(++tmp);
 	while (ft_isdigit(*tmp))
 		++tmp;
-	ft_seq_set(seq, tok + 1, width, prec);
+	ft_seq_set(seq, "", width, prec);
 	seq->tconv = *tmp;
 	if (*tmp == 37)
-	{
-		ft_seq_set(seq, tok + 1, 1, 1);
-		seq->data = ft_substr(tmp, 0, 1);
-	}
+		ft_seq_set(seq, "", ft_smax(seq->width, 1), 1);
+	free(flg);
 	free(tok);
 	return ;
 }
@@ -85,23 +86,4 @@ t_seq	*ft_q_set(const char *fmt)
 	}
 	free(d);
 	return (seq);
-}
-
-size_t	ft_q_print(t_seq *seq)
-{
-	size_t	res;
-	size_t	i;
-	char	*tmp;
-
-	res = 0;
-	while (seq)
-	{
-		i = seq->width;
-		res += i;
-		tmp = seq->data;
-		while (i--)
-			write(1, tmp++, 1);
-		seq = seq->next;
-	}
-	return (res);
 }

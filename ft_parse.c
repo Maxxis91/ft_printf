@@ -6,11 +6,11 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:23:58 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/11 23:47:50 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/18 20:44:53 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "ft_printf.h"
 
 static char	*ft_get_str(const char *s)
 {
