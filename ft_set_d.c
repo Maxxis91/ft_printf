@@ -6,7 +6,7 @@
 /*   By: gmelissi <gmelissi@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:33:40 by gmelissi          #+#    #+#             */
-/*   Updated: 2021/11/18 21:37:47 by gmelissi         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:37:05 by gmelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	*ft_set_d(t_seq *seq, int d)
 		tmp = ft_strdup("");
 	else
 		tmp = ft_itoa(d);
-	if (seq->flags->bpos)
-		seq->flags->sign = 0;
+	if (seq->flags->sign)
+		seq->flags->bpos = 0;
 	if (seq->prcsn >= 0 || seq->flags->ladj)
 		seq->flags->zpad = 0;
 	seq->prcsn = ft_abs(seq->prcsn);
